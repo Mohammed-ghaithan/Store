@@ -1,0 +1,31 @@
+@page "/user-input"
+
+<h1>إدخال بيانات المستخدم</h1>
+
+<form @onsubmit="SubmitData">
+    <div class="form-group">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" class="form-control" required @bind-value="userName" />
+    </div>
+    <div class="form-group">
+        <label for="age">العمر:</label>
+        <input type="number" id="age" class="form-control" required @bind-value="userAge" />
+    </div>
+    <div class="form-group">
+        <label for="nationality">الجنسية:</label>
+        <input type="text" id="nationality" class="form-control" required @bind-value="userNationality" />
+    </div>
+    <button type="submit" class="btn btn-primary">إرسال</button>
+</form>
+
+@code {
+    private string userName = "";
+    private int userAge = 0;
+    private string userNationality = "";
+
+    private void SubmitData()
+    {
+        // Navigation to the DisplayData page with user data
+        NavigationManager.NavigateTo("/display-data", new { name = userName, age = userAge, nationality = userNationality });
+    }
+}
